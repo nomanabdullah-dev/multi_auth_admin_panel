@@ -12,10 +12,10 @@
             </button>
             <div class="flex flex-col" v-if="openAdmins">
                 <Link href="#" class="text-right capitalize border-t w-full px-6 py-2">Admins</Link>
-                <Link href="#" class="text-right capitalize border-t w-full px-6 py-2">Roles</Link>
+                <Link :href="route('admin.roles.index')" class="text-right capitalize border-t w-full px-6 py-2" :class="route().current('admin.roles.*') ? 'text-gray-50 bg-gray-500':'hover:text-gray-50 hover:bg-gray-500'">Roles</Link>
                 <Link href="#" class="text-right capitalize border-t w-full px-6 py-2">Users</Link>
             </div>
-            <Link href="#" class="flex justify-between items-center border-t px-6 py-2 capitalize hover:bg-gray-500 hover:text-gray-50">Dashboard</Link>
+            <Link :href="route('dashboard')" class="flex justify-between items-center border-t px-6 py-2 capitalize hover:bg-gray-500 hover:text-gray-50">Dashboard</Link>
         </div>
     </div>
 </template>

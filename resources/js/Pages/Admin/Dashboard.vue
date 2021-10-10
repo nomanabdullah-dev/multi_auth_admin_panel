@@ -13,12 +13,10 @@
 </template>
 
 <script>
-    import Welcome from '@/Pages/Welcome'
     import AdminLayout from '@/Layouts/AdminLayout'
     export default {
         components: {
             AdminLayout,
-            Welcome
         }
     }
 </script>
