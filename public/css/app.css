@@ -1531,6 +1531,9 @@ select {
 .bg-no-repeat {
 	background-repeat: no-repeat;
 }
+.fill-current {
+	fill: currentColor;
+}
 .object-cover {
 	-o-object-fit: cover;
 	   object-fit: cover;
@@ -1677,6 +1680,9 @@ select {
 }
 .uppercase {
 	text-transform: uppercase;
+}
+.capitalize {
+	text-transform: capitalize;
 }
 .leading-5 {
 	line-height: 1.25rem;
@@ -1889,6 +1895,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
+.hover\:bg-gray-500:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(107, 114, 128, var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -1908,6 +1918,10 @@ select {
 .hover\:text-gray-900:hover {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+.hover\:text-gray-50:hover {
+	--tw-text-opacity: 1;
+	color: rgba(249, 250, 251, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
@@ -2112,6 +2126,10 @@ select {
 		width: 66.666667%;
 	}
 
+	.sm\:w-1\/4 {
+		width: 25%;
+	}
+
 	.sm\:max-w-md {
 		max-width: 28rem;
 	}
@@ -2171,6 +2189,10 @@ select {
 
 	.sm\:justify-between {
 		justify-content: space-between;
+	}
+
+	.sm\:justify-around {
+		justify-content: space-around;
 	}
 
 	.sm\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
