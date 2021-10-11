@@ -5,9 +5,13 @@
                 <h1 class="font-semibold text-xl text-gray-800 leading-tight">
                     Roles
                 </h1>
-                <blue-button class="text-sm">Create</blue-button>
+                <blue-button :href="route('admin.roles.create')" class="text-sm">Create</blue-button>
             </div>
         </template>
+
+        <div class="text-center my-4" v-if="$page.props.success">
+            <span class="text-xl bg-blue-500 text-gray-50 px-2 rounded-md">{{ $page.props.success }}</span>
+        </div>
 
         <div class="px-6 py-2">
             <table class="table-auto w-full">
@@ -42,6 +46,7 @@
     import BlueButton from '@/Components/BlueButton'
     import GreenButton from '@/Components/GreenButton'
     import JetDangerButton from '@/Jetstream/DangerButton'
+    import { Head, Link } from '@inertiajs/inertia-vue3'
     export default {
         props: ['roles'],
         components: {
