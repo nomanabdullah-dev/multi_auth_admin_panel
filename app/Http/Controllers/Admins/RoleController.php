@@ -32,7 +32,9 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        //
+        return Inertia::render('Admin/Roles/Show', [
+            'role' => $role,
+        ]);
     }
 
     public function edit(Role $role)
@@ -42,11 +44,16 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $role->update($request->only(['name']));
+        return redirect(route('admin.roles.index'))->withSuccess('Role updated successfully!');
     }
 
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect(route('admin.roles.index'))->withSuccess('Role deleted successfully!');
     }
 }
