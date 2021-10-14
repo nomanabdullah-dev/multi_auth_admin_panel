@@ -3,14 +3,14 @@
         <template #header>
             <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Admins
+                    Users
                 </h2>
             </div>
         </template>
 
         <div class="flex flex-col mx-auto px-6 py-2 w-1/2">
             <div>
-                <h2 class="text-center text-xl font-semibold capitalize underline">{{ admin.name }}</h2>
+                <h2 class="text-center text-xl font-semibold capitalize underline">{{ user.name }}</h2>
                 <form @submit.prevent="submit">
                     <div class="flex flex-col mt-2">
                         <jet-label for="name" value="Name" class="text-xl"></jet-label>
@@ -43,7 +43,7 @@
 
                     <div class="flex items-center justify-center mt-8">
                         <green-button type="submit" class="text-sm ml-4" :class="{'opacity-25':form.processing}" :disabled="form.processing">Update</green-button>
-                        <jet-danger-button :href="route('admin.admins.index')" class="text-sm ml-4">Cancel</jet-danger-button>
+                        <jet-danger-button :href="route('admin.users.index')" class="text-sm ml-4">Cancel</jet-danger-button>
                     </div>
                 </form>
             </div>
@@ -59,7 +59,7 @@
     import JetInputError from '@/Jetstream/InputError'
     import JetLabel from '@/Jetstream/Label'
     export default {
-        props: ['admin', 'allRoles'],
+        props: ['user', 'allRoles'],
         components: {
             AdminLayout,
             GreenButton,
@@ -71,21 +71,21 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    name: this.admin.name,
-                    email: this.admin.email,
-                    created_at: this.admin.created_at,
+                    name: this.user.name,
+                    email: this.user.email,
+                    created_at: this.user.created_at,
                     roles: []
                 })
             }
         },
         created() {
-            if(this.admin.roles) {
-                return this.form.roles.push(this.admin.roles)
+            if(this.user.roles) {
+                return this.form.roles.push(this.user.roles)
             }
         },
         methods: {
             submit() {
-                this.form.patch(this.route('admin.admins.update', this.admin.id), this.form)
+                this.form.patch(this.route('admin.users.update', this.user.id), this.form)
             }
         }
     }
