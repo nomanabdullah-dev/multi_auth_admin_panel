@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -15,11 +16,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return Inertia::render('Admin/Users/Index', [
-            'users' => User::where('is_admin', 0)->get()
-        ]);
+    public function index() {
+        if (Gate::allows('accessUsers')) {
+            return Inertia::render('Admin/Users/Index', [
+                'users' => User::where('is_admin', 0)->get(),
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -49,12 +52,14 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
-        return Inertia::render('Admin/Users/Show',[
-            'user' => $user,
-            'allRoles' => Role::all()
-        ]);
+    public function show(User $user) {
+        if (Gate::allows('manageUsers')) {
+            return Inertia::render('Admin/Users/Show', [
+                'user' => $user,
+                'allRoles' => Role::all()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -75,14 +80,16 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        $role = Role::where('name', $request->roles[0][0]['name'])->first();
-        if($user->is_admin != 1 && $role->name != 'user') {
-            $user->roles()->sync($role);
-            $user->update(['is_admin' => 1]);
+    public function update(Request $request, User $user) {
+        if (Gate::allows('manageUsers')) {
+            $role = Role::where('name', $request->roles[0][0]['name'])->first();
+            if ($user->is_admin != 1 && $role->name != 'user') {
+                $user->roles()->sync($role);
+                $user->update(['is_admin' => 1]);
+            }
+            return redirect()->route('admin.users.index')->withSuccess(ucwords($user->name).' has been successfully updated!');
         }
-        return redirect()->route('admin.users.index')->withSuccess(ucwords($user->name).' has been successfully updated!');
+        return back();
     }
 
     /**

@@ -5,7 +5,7 @@
                 <h1 class="font-semibold text-xl text-gray-800 leading-tight">
                     Roles
                 </h1>
-                <blue-button :href="route('admin.roles.create')" class="text-sm">Create</blue-button>
+                <blue-button :href="route('admin.roles.create')" class="text-sm" v-if="$page.props.auth.can.manageRoles">Create</blue-button>
             </div>
         </template>
 
@@ -19,14 +19,14 @@
                     <tr>
                         <td class="text-left pl-3">Name</td>
                         <td class="text-left pl-3">Created</td>
-                        <td class="text-right pr-3">Actions</td>
+                        <td class="text-right pr-3" v-if="$page.props.auth.can.manageRoles">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(role,index) in roles" :key="index" class="text-center hover:bg-gray-600 hover:text-gray-50" :class="{'bg-gray-300' : index%2 === 0}">
                         <td class="text-left capitalize py-3 pl-3">{{ role.name }}</td>
                         <td class="text-left py-3 pl-3">{{ role.created_at }}</td>
-                        <td class="py-3">
+                        <td class="py-3" v-if="$page.props.auth.can.manageRoles">
                             <div class="flex justify-end pr-3">
                                 <green-button :href="(route('admin.roles.show', role.id))" class="text-sm">Edit</green-button>
                                 <form @submit.prevent="submit(role.id)">

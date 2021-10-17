@@ -1119,6 +1119,10 @@ select {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
+.my-auto {
+	margin-top: auto;
+	margin-bottom: auto;
+}
 .ml-3 {
 	margin-left: 0.75rem;
 }
@@ -1809,6 +1813,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(249, 250, 251, var(--tw-text-opacity));
 }
+.text-blue-500 {
+	--tw-text-opacity: 1;
+	color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
 .underline {
 	text-decoration: underline;
 }
@@ -1973,6 +1981,10 @@ select {
 .hover\:text-gray-50:hover {
 	--tw-text-opacity: 1;
 	color: rgba(249, 250, 251, var(--tw-text-opacity));
+}
+.hover\:text-blue-800:hover {
+	--tw-text-opacity: 1;
+	color: rgba(30, 64, 175, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
